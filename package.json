@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "react-ssr-practice",
   "scripts": {
-    "server": "nodemon --exec babel-node ./server/server.js",
+    "server": "NODE_ENV=server nodemon --exec babel-node ./server/server.js",
     "client": "webpack-dev-server --config ./client/webpack.config.js",
-    "build-client": "NODE_ENV=production webpack --config ./client/webpack.config.js"
+    "build-client": "NODE_ENV=production webpack --config ./client/webpack.config.js",
+    "build-server": "NODE_ENV=production webpack --config ./server/webpack.config.js",
+    "buildedServer": "npm run build-server && npm run build-client && cp ./clientBuild/clientBundle.js ./serverBuild && node ./serverBuild/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -21,8 +23,11 @@
     "@babel/runtime": "^7.11.2",
     "koa": "^2.13.0",
     "koa-router": "^9.4.0",
+    "koa-static": "^5.0.0",
+    "nunjucks": "^3.2.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -46,6 +51,7 @@
     "react-refresh": "^0.8.3",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-node-externals": "^2.5.1"
   }
 }
