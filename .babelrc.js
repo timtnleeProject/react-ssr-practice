@@ -1,15 +1,13 @@
-// TODO: separate client and server babel config
-
 module.exports = (api) => {
   api.cache.using(() => process.env.NODE_ENV);
   return {
     presets: [
-      "@babel/preset-env",
-      "@babel/react"
+      '@babel/preset-env',
+      '@babel/react',
     ],
     plugins: [
-      "@babel/transform-runtime",
-      api.env('development') && 'react-refresh/babel',
+      '@babel/transform-runtime',
+      !api.env('server') && !api.env('production') && 'react-refresh/babel',
     ].filter(Boolean),
   };
 };

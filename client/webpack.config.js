@@ -11,13 +11,8 @@ module.exports = {
     path.resolve(__dirname, 'entry.jsx'),
   ],
   output: {
-    filename: '[name].[hash].js',
-    path: path.resolve(__dirname, 'build'),
-  },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
+    filename: 'clientBundle.js',
+    path: path.resolve(__dirname, '../clientBuild'),
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -49,7 +44,7 @@ module.exports = {
         'babel-loader',
       ],
       include: [
-        __dirname,
+        path.resolve(__dirname),
       ],
     }],
   },
