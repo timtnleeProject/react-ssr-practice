@@ -14,7 +14,9 @@ const PORT = '3679';
 const app = new Koa();
 const router = new Router();
 
-app.use(serve('serverBuild'));
+app.use(serve('clientBuild', {
+  index: false,
+}));
 
 router.get('(.*)', (ctx) => {
   const result = renderToString(
