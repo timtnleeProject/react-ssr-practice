@@ -2,6 +2,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -16,6 +17,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, 'static/index.html'),
     }),
@@ -48,7 +50,7 @@ module.exports = {
       ],
     }, {
       test: /\.css$/i,
-      use: ['style-loader', 'css-loader'],
+      use: [MiniCssExtractPlugin.loader, 'css-loader'],
     }],
   },
 };
